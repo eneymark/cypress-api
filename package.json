@@ -1,0 +1,23 @@
+{
+  "name": "cypress-testing",
+  "version": "1.0.0",
+  "description": "using cypress to test login, chat, and API",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "cypress open",
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eneymark/cypress-api.git"
+  },
+  "author": "Eugene Neymark",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eneymark/cypress-api/issues"
+  },
+  "homepage": "https://github.com/eneymark/cypress-api#readme",
+  "dependencies": {
+    "cypress": "^5.0.0"
+  }
+}
