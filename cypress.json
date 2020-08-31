@@ -1,3 +1,4 @@
 {
+  "experimentalFetchPolyfill": true,
   "baseUrl": "https://pager-qa-hiring.herokuapp.com"
 }

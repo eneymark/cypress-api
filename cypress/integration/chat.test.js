@@ -1,3 +1,5 @@
+import gifyResponse from '../fixtures/gify.json';
+
 describe('Chat functionality suite of tests', ()=>{
 
    before(()=>{
@@ -6,8 +8,19 @@ describe('Chat functionality suite of tests', ()=>{
       cy.get('.button-container .btn').click();
    });
 
+   it('should display image from gify', ()=>{
+      cy.server();
+      cy.route({
+         method: 'GET',
+         url: 'https://api.giphy.com/v1/gifs/random*',
+         response: gifyResponse
+      }).as('getGify');
+      cy.get('.btn-container input').first().type('/gif anything')
+      cy.get('.btn-container button.btn-send').click();
+      cy.wait('@getGify');
+   });
+
    it('should have correct elements on chat view', ()=>{
-      cy.get('.chat .messages').should('contain.text', 'There no message');
       cy.get('.btn-container input').first().should('have.attr', 'placeholder', 'Message');
       cy.get('.btn-container button.btn-send').should('contain.text', 'Send');
    });
@@ -29,13 +42,13 @@ describe('Chat functionality suite of tests', ()=>{
              .should('contain.text', 'Eugene');
          messageNode().find('.message-line')
              .should('contain.text', 'hello world of chat');
-
       });
 
       it('should display avatar correctly', ()=>{
          messageNode().find('.avatar')
-             .should('be.visible');
+             .should('have.length', 1);
       });
+
    })
 
 });
