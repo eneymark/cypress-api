@@ -24,9 +24,7 @@ describe('Chat functionality suite of tests', ()=>{
       cy.get('.btn-container input').first().should('have.attr', 'placeholder', 'Message');
       cy.get('.btn-container button.btn-send').should('contain.text', 'Send');
    });
-   it('should have logout functionality', ()=>{
-     // cy.get('.btn-container button.btn-logout').should('contain.text', 'Send');
-   });
+
    it('should enter message correctly', ()=>{
       cy.get('.btn-container input').first().type('hello world of chat')
       cy.get('.btn-container button.btn-send').click();
@@ -50,5 +48,13 @@ describe('Chat functionality suite of tests', ()=>{
       });
 
    })
+   describe('logout tests', ()=>{
+      it('should have logout functionality', ()=>{
+         cy.get('button.btn-logout').should('contain.text', 'Signout');
+         cy.get('button.btn-logout').click();
+         cy.reload();
+         cy.url().should('equal', 'https://pager-qa-hiring.herokuapp.com/#/');
+      });
+   });
 
 });
